@@ -2,5 +2,5 @@
 main.o: main.c
 	cc -o main.o main.c
 
-run:
+run: main.o
 	./main.o
