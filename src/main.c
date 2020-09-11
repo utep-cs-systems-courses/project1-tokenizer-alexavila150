@@ -13,7 +13,10 @@ int main()
   scan_sentence(input, 10);
   printf("%s\n", input);
 
-  init_history();
+  List *list = init_history();
+
+  //Ask user for another sentence
+  add_history(list, "My second message");
 }
 
 // scans sentence from the user
