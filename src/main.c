@@ -1,5 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "history.h"
+
+void scan_sentence(char input[], int n);
+
 
 int main()
 {
@@ -8,8 +12,13 @@ int main()
   char input[10];
   scan_sentence(input, 10);
   printf("%s\n", input);
+
+  init_history();
 }
 
+// scans sentence from the user
+// input is where the input will be store
+// n is the limit of the input
 void scan_sentence(char input[], int n){
   char ch;
   int i = 0;
