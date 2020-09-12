@@ -8,6 +8,6 @@ run: main.o
 	./main.o
 
 clean:
-	rm -f *.o *# *~ output
+	rm -f *.o *# *~ output run
 
 history.o: history.h history.c

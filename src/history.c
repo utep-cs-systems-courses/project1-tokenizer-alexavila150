@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include "history.h"
 
-List* init_history(){
-  printf("init_history\n");
+List* init_history()
+{
   List *list = (List*)malloc(sizeof(List));
 
   list->root = (Item*)malloc(sizeof(Item));
@@ -14,19 +14,19 @@ List* init_history(){
   return list;
 }
 
-void add_history(List *list, char *str){
+void add_history(List *list, char *str)
+{
   //Go to the end of the linked list
   Item *curr = list->root;
-  while(curr->next != 0)
+  int id = 1;
+  while(curr->next != 0){
     curr = curr->next;
-
-  curr-next = (Item*)malloc(sizeof(Item));
+    id++;
+  }
   
-  
-  printf("add history\n");
-  printf("your sentece is %s\n", str);
-  printf("The first sentence in the list is: %s\n", list->root->str);
-  printf("\n");
+  curr->next = (Item*)malloc(sizeof(Item));
+  curr->next->str = str;
+  curr->next->id = id;
 }
 
 char *get_history(List *list, int id){
@@ -37,7 +37,7 @@ char *get_history(List *list, int id){
 void print_history(List *list){
   Item *curr = list->root;
   while(curr != 0){
-    printf("%d. %s\n", curr->id, curr->str);
+    printf("%d) %s\n", curr->id, curr->str);
     curr = curr->next;
   }
 }
