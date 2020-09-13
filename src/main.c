@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "history.h"
+#include "tokenizer.h"
 
 void scan_sentence(char input[], int n);
 
@@ -17,6 +18,15 @@ int main()
     printf("keep running\n");
     is_running = running(list);
   }
+
+  printf("Enter a word to tokenize\n");
+  //char input[50];
+  //scan_sentence(input, 50);
+  char **tokens = tokenize("My     tokenized     sentence\n");
+  printf("First word: %s\n", tokens[0]);
+  printf("Second word: %s\n", tokens[1]);
+  printf("Third word: %s\n", tokens[2]);
+  
   printf("Thank you for coming\n");
 }
 
