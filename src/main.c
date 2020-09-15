@@ -13,17 +13,8 @@ int main()
   printf("Welcome\n");
 
   List *list = init_history();
-  int is_running = 1;
-  while(is_running){
-    printf("keep running\n");
-    is_running = running(list);
-  }
+  while(running(list));
   
-  printf("Enter a word to tokenize\n");
-  //char input[50];
-  //scan_sentence(input, 50);
-  char **tokens = tokenize("  Hello    this   is   my sentence    ");
-  print_tokens(tokens);
   printf("Thank you for coming\n");
 }
 
@@ -36,23 +27,42 @@ int running(List* list){
   // do option according to the user's request
   switch(option[0]){
     case 'q':
-      printf("Case q\n");
       return 0;
     case 'h':
-      printf("Case h\n");
       print_history(list);
       return 1;
   }
 
-  printf("Case a\n");
   // ask for input
   printf("Enter your sentence:\n>");
-  char* input = (char*)malloc(10 * sizeof(char));
+  char *input = (char*)malloc(100 * sizeof(char));
+  scan_sentence(input, 100);
   
-  scan_sentence(input, 10);
+  //tokenize the input
+  char **tokens = tokenize(input);
+  print_tokens(tokens);
+  char *token_str = (char*)malloc(100 * sizeof(char));
+  char *curr = token_str;
+
+  int word = 0;
+  int letter = 0;
+  for(int i = 0; i < 100; i++){
+    curr[i] = tokens[word][letter];
+    letter++;
+    if(tokens[word][letter] == '\0'){
+      letter = 0;
+      word++;
+      curr[++i] = ' ';
+    }
+    if(tokens[word] == 0){
+      curr[++i] = '\0';
+      break;
+    }
+  }
   
-  // add letter to the end of the list
-  add_history(list, input);
+  
+  // add letter to the end of the list            
+  add_history(list, token_str);
 }
 
 // scans sentence from the user

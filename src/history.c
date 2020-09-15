@@ -8,9 +8,6 @@ List* init_history()
 
   list->root = (Item*)malloc(sizeof(Item));
 
-  list->root->id = 1;
-  list->root->str = "My first message";
-
   return list;
 }
 
@@ -35,7 +32,7 @@ char *get_history(List *list, int id){
 }
 
 void print_history(List *list){
-  Item *curr = list->root;
+  Item *curr = list->root->next;
   while(curr != 0){
     printf("%d) %s\n", curr->id, curr->str);
     curr = curr->next;
