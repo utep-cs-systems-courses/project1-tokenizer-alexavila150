@@ -18,17 +18,12 @@ int main()
     printf("keep running\n");
     is_running = running(list);
   }
-
+  
   printf("Enter a word to tokenize\n");
   //char input[50];
   //scan_sentence(input, 50);
-  char **tokens = tokenize("     My     tokenized     sentence\n");
-  printf("First word: %s\n", tokens[0]);
-  printf("Second word: %s\n", tokens[1]);
-  printf("Third word: %s\n", tokens[2]);
-  printf("Fourth word: %s\n", tokens[3]);
-  printf("Fifth word: %s\n", tokens[4]);
-  
+  char **tokens = tokenize("  Hello    this   is   my sentence    ");
+  print_tokens(tokens);
   printf("Thank you for coming\n");
 }
 
