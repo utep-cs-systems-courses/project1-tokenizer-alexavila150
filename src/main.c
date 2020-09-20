@@ -5,7 +5,9 @@
 
 void scan_sentence(char input[], int n);
 
-int running(List* list);
+int running(List *list);
+
+short is_number(char *str);
 
 int main()
 {
@@ -40,6 +42,13 @@ int running(List* list){
   printf("Enter your sentence:\n>");
   char *input = (char*)malloc(100 * sizeof(char));
   scan_sentence(input, 100);
+
+  //check if input is asking for history
+
+  if(input[0] == '!' && is_number(input + 1)){
+    printf("%s\n", get_history(list, input[1] - 48));
+    return 1;
+  }
   
   //tokenize the input
   char **tokens = tokenize(input);
@@ -67,6 +76,18 @@ int running(List* list){
   free_tokens(tokens);
   // add letter to the end of the list            
   add_history(list, token_str);
+  return 1;
+}
+
+short is_number(char* str){
+  //check if following chars are numbers
+  while(*str != '\0'){
+    if(*str < 48 || *str > 57){
+      return 0;
+    }
+    str++;
+  }
+  
   return 1;
 }
 

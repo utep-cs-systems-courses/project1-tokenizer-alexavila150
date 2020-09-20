@@ -20,14 +20,21 @@ void add_history(List *list, char *str)
   }
   
   curr->next = (Item*)malloc(sizeof(Item));
+  curr->next->next = 0;
   curr->next->str = str;
   curr->next->id = id;
 }
 
 
 char *get_history(List *list, int id){
-  printf("get history");
-  return 0;
+  Item *curr = list->root->next;
+  while(curr != 0){
+    if(curr->id == id){
+      return curr->str;
+    }
+    curr = curr->next;
+  }
+  return "id not found please choose a valid id";
 }
 
 void print_history(List *list){
@@ -55,13 +62,7 @@ void free_history(List *list){
     prev = curr;
     curr = curr->next;
   }
+
+  free(prev->str);
+  free(prev);
 }
-
-
-
-
-
-
-
-
-
