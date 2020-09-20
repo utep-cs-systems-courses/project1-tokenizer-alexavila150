@@ -31,6 +31,9 @@ int running(List* list){
     case 'h':
       print_history(list);
       return 1;
+    case 'f':
+      free_history(list);
+      return 1;
   }
 
   // ask for input

@@ -102,13 +102,10 @@ void print_tokens(char **tokens)
 void free_tokens(char **tokens)
 {
   char **curr = tokens;
-  printf("Before while loop\n");
   while(*curr != 0){
-    printf("curr: %s\n", *curr);
     free(*curr);
     curr++;
   }
-  printf("After while loop\n");
   free(tokens);
 }
 
