@@ -20,7 +20,7 @@ int main()
 
 int running(List* list){
   // Ask and read sentence
-  printf("Choose an option ('a',enter sentence to store 'h' to see history, 'q' to quit)\n>");
+  printf("Choose an option ('t' tokenize, 'h' see history, 'f', free history 'q' quit)\n>");
   char option[2];
   scan_sentence(option, 2);
 
@@ -44,6 +44,7 @@ int running(List* list){
   char *token_str = (char*)malloc(100 * sizeof(char));
   char *curr = token_str;
 
+  //Make tokens a string
   int word = 0;
   int letter = 0;
   for(int i = 0; i < 100; i++){
@@ -59,10 +60,11 @@ int running(List* list){
       break;
     }
   }
-  
-  
+
+  free_tokens(tokens);
   // add letter to the end of the list            
   add_history(list, token_str);
+  return 1;
 }
 
 // scans sentence from the user

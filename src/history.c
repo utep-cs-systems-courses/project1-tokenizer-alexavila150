@@ -5,9 +5,7 @@
 List* init_history()
 {
   List *list = (List*)malloc(sizeof(List));
-
   list->root = (Item*)malloc(sizeof(Item));
-
   return list;
 }
 
@@ -26,6 +24,7 @@ void add_history(List *list, char *str)
   curr->next->id = id;
 }
 
+
 char *get_history(List *list, int id){
   printf("get history");
   return 0;
@@ -40,5 +39,29 @@ void print_history(List *list){
 }
 
 void free_history(List *list){
-  printf("free history");
+  Item *curr = list->root->next;
+  list->root->next = 0;
+  // Case list is emtpy
+  if(curr == 0){
+    return;
+  }
+
+  // Keep track of the previous Item to erase it
+  Item *prev = curr;
+  curr = curr->next;
+  while(curr != 0){
+    free(prev->str);
+    free(prev);
+    prev = curr;
+    curr = curr->next;
+  }
 }
+
+
+
+
+
+
+
+
+
