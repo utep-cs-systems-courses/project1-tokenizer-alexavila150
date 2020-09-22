@@ -34,7 +34,7 @@ char *get_history(List *list, int id){
     }
     curr = curr->next;
   }
-  return "id not found please choose a valid id";
+  return 0;
 }
 
 void print_history(List *list){

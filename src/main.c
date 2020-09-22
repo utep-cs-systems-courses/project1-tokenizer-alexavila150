@@ -22,7 +22,7 @@ int main()
 
 int running(List* list){
   // Ask and read sentence
-  printf("Choose an option ('t' tokenize, 'h' see history, 'f', free history 'q' quit)\n>");
+  printf("Choose an option\n('a' add sentence, '!n' get nth sentence, 'h' see history, 'f' free history, 'q' quit)\n>");
   char option[10];
   scan_sentence(option, 10);
 
@@ -38,7 +38,11 @@ int running(List* list){
     return 1;
   case '!':
     if(is_number(option + 1)){
-      char* history = get_history(list, option[1] - 48);
+      char *history = get_history(list, option[1] - 48);
+      if(history == 0){
+	printf("Not a valid id, please try again\n");
+	return 1;
+      }
       char **tokens = tokenize(history);
       print_tokens(tokens);
       
@@ -50,13 +54,6 @@ int running(List* list){
   printf("Enter your sentence:\n>");
   char *input = (char*)malloc(100 * sizeof(char));
   scan_sentence(input, 100);
-
-  //check if input is asking for history
-
-  if(input[0] == '!' && is_number(input + 1)){
-    printf("%s\n", get_history(list, input[1] - 48));
-    return 1;
-  }
   
   //tokenize the input
   char **tokens = tokenize(input);
