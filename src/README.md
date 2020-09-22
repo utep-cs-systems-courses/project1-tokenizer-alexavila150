@@ -5,14 +5,14 @@ Project 1: Tokenizer
 The main.c file was resposible for taking care of the user interface
 functionality. This one will ask the user between many choices
 
--a: this one will ask the user to input a sentece which then it will store
+- a: this one will ask the user to input a sentece which then it will store
  into the in the linked list produced they the history.c file.
--!n: the user can choose between to echo one the history stored sentences by
+- !n: the user can choose between to echo one the history stored sentences by
  typing '!' followed by a number which will represent the position of the node
  where the sentence is stored.
--f: this one will free the memory from the linked list and it will allowed the
- user to keep storing new information
--q: this will allow the user to quit and terminate the program
+- f: this one will free the memory from the linked list and it will allowed
+ the user to keep storing new information
+- q: this will allow the user to quit and terminate the program
 
 ## scan_sentence
 
