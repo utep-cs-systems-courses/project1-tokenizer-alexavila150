@@ -85,15 +85,20 @@ char **tokenize(char* str)
     tokens[i] = copy_str(first_letter, str - first_letter);
   }
   
-  tokens[i] = 0;
+  tokens[i] = NULL;
   return tokens;
 }
 
 void print_tokens(char **tokens)
 {
+  if(*tokens == 0){
+    printf("\n");
+    return;
+  }
+  
   char **curr = tokens;
   while(*curr != 0){
-    printf("%s ", *curr);
+    printf("%s\n", *curr);
     curr++;
   }
   printf("\n");

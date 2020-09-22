@@ -23,19 +23,27 @@ int main()
 int running(List* list){
   // Ask and read sentence
   printf("Choose an option ('t' tokenize, 'h' see history, 'f', free history 'q' quit)\n>");
-  char option[2];
-  scan_sentence(option, 2);
+  char option[10];
+  scan_sentence(option, 10);
 
   // do option according to the user's request
   switch(option[0]){
-    case 'q':
-      return 0;
-    case 'h':
-      print_history(list);
-      return 1;
-    case 'f':
-      free_history(list);
-      return 1;
+  case 'q':
+    return 0;
+  case 'h':
+    print_history(list);
+    return 1;
+  case 'f':
+    free_history(list);
+    return 1;
+  case '!':
+    if(is_number(option + 1)){
+      char* history = get_history(list, option[1] - 48);
+      char **tokens = tokenize(history);
+      print_tokens(tokens);
+      
+    }
+    return 1;
   }
 
   // ask for input
@@ -53,29 +61,10 @@ int running(List* list){
   //tokenize the input
   char **tokens = tokenize(input);
   print_tokens(tokens);
-  char *token_str = (char*)malloc(100 * sizeof(char));
-  char *curr = token_str;
-
-  //Make tokens a string
-  int word = 0;
-  int letter = 0;
-  for(int i = 0; i < 100; i++){
-    curr[i] = tokens[word][letter];
-    letter++;
-    if(tokens[word][letter] == '\0'){
-      letter = 0;
-      word++;
-      curr[++i] = ' ';
-    }
-    if(tokens[word] == 0){
-      curr[++i] = '\0';
-      break;
-    }
-  }
-
+  
   free_tokens(tokens);
   // add letter to the end of the list            
-  add_history(list, token_str);
+  add_history(list, input);
   return 1;
 }
 
@@ -104,6 +93,17 @@ void scan_sentence(char input[], int n){
 
   input[i] = '\0';
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
